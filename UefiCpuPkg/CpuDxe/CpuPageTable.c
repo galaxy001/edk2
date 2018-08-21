@@ -1037,7 +1037,6 @@ InitializePageTablePool (
   )
 {
   VOID                      *Buffer;
-  BOOLEAN                   IsModified;
 
   //
   // Always reserve at least PAGE_TABLE_POOL_UNIT_PAGES, including one page for
@@ -1077,13 +1076,12 @@ InitializePageTablePool (
     NULL,
     (PHYSICAL_ADDRESS)(UINTN)Buffer,
     EFI_PAGES_TO_SIZE (PoolPages),
-    EFI_MEMORY_RO,
+    0,
     PageActionSet,
     AllocatePageTableMemory,
     NULL,
-    &IsModified
+    NULL
     );
-  ASSERT (IsModified == TRUE);
 
   return TRUE;
 }
@@ -1153,9 +1151,17 @@ InitializePageTableLib (
   if (CurrentPagingContext.ContextData.X64.PageTableBase != 0 &&
       (CurrentPagingContext.ContextData.Ia32.Attributes &
        PAGE_TABLE_LIB_PAGING_CONTEXT_IA32_X64_ATTRIBUTES_PAE) != 0) {
-    DisableReadOnlyPageWriteProtect ();
+
+    BOOLEAN IsWpEnabled;
+
+    IsWpEnabled = IsReadOnlyPageWriteProtected ();
+    if (IsWpEnabled) {
+      DisableReadOnlyPageWriteProtect ();
+    }
     InitializePageTablePool (1);
-    EnableReadOnlyPageWriteProtect ();
+    if (IsWpEnabled) {
+      EnableReadOnlyPageWriteProtect ();
+    }
   }
 
   DEBUG ((DEBUG_INFO, "CurrentPagingContext:\n", CurrentPagingContext.MachineType));
