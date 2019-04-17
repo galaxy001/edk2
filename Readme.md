@@ -1,5 +1,23 @@
 # EDK II Project
 
+Forked from [kholia/edk2](https://github.com/kholia/edk2). Since the [offical](https://github.com/tianocore/edk2) one changed to use readonly pagetables on 2018, we have to revert the 2 commit to boot macOS.
+
+See [https://github.com/kholia/edk2/commit/071595106dceb2b19fca4399b8eec9886f43bb31](https://github.com/galaxy001/edk2/commit/071595106dceb2b19fca4399b8eec9886f43bb31) for the commit of "Revert readonly pagetables introduced by 2ac1730 and 147fd35".
+
+My [commit](https://github.com/galaxy001/edk2/commit/e4f38c358d2c218a95926660f2a8f32cde9cb64f) added *more 16:10 HiDPI(2x) resolution modes*. And this have been [merged](https://github.com/kholia/edk2/pull/1) to *kholia/edk2*.
+
+
+
+For Arch Linux users:
+
+See `PKGBUILD.ovmf-git`, which is from <https://aur.archlinux.org/packages/ovmf-git/>.
+Last Updated: 	2019-01-14 01:15
+
+See also `PKGBUILD.edk2-ovmf-macboot-git` of <https://aur.archlinux.org/packages/edk2-ovmf-macboot-git/>.
+Last Updated: 2018-04-22 12:53
+
+------
+
 A modern, feature-rich, cross-platform firmware development environment
 for the UEFI and PI specifications from www.uefi.org.
 
