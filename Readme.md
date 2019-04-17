@@ -1,5 +1,22 @@
 # EDK II Project
 
+See also <https://www.contrib.andrew.cmu.edu/~somlo/OSXKVM/> and <https://www.contrib.andrew.cmu.edu/~somlo/OSXKVM/index_old.html>.
+
+Gabriel L. Somlo
+
+FINAL UPDATE (2018-10-21): 
+I no longer have the cycles to work on this project. At this point QEMU and KVM are mostly capable of supporting OS X (up to Sierra), and the largest portion of the effort still required lies with edk2/ovmf (start with my fork on github as indicated below, and go from there).
+
+NOTE: Installer .iso images prepared based on Sierra 10.12.4 or later will hang during boot. However, guest images installed with 10.12.3 or earlier can successfully be upgraded, assuming the applesmc fix mentioned above is applied. The cause for this is as of yet unknown (to me, at least).
+
+OS X High Sierra (10.13) doesn't boot at this time. 
+*So, use Clover EFI loader instead.*
+
+`PKGBUILD.edk2-ovmf-macboot-git` is from <https://aur.archlinux.org/packages/edk2-ovmf-macboot-git/>.
+Last Updated: 	2018-04-22 12:53
+
+------
+
 A modern, feature-rich, cross-platform firmware development environment
 for the UEFI and PI specifications from www.uefi.org.
 
